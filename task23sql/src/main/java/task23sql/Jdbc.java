@@ -10,9 +10,12 @@ import com.mysql.cj.xdevapi.Statement;
 public class Jdbc {
 
 	public static void main(String[] args) {
+		//creating connection
 		String db_url = "jdbc:mysql://localhost:3306/task23";
 		String user = "root";
 		String pass = "root";
+		
+		//establishing connection and checking the connection is established or not
 	try {
 		Connection connection =	DriverManager.getConnection(db_url, user, pass);
 		if(connection!=null) {
@@ -20,6 +23,8 @@ public class Jdbc {
 		}else {
 			System.out.println("connection failed");
 		}
+		
+		//creating the query statement
 		 java.sql.Statement stmt= connection.createStatement();
 		 
 		 String createtable = "create table emptable(empcode int not null, \r\n"
@@ -32,9 +37,12 @@ public class Jdbc {
 		 		+ "(103,'joe',20,40000), \r\n"
 		 		+ "(104,'john',40,80000),\r\n "
 		 		+ "(105,'shammer',25,90000)";
+		 
+		 //executing the statement
 		 stmt.executeUpdate(createtable);
 		 stmt.executeUpdate(values);
 		 
+		 //Retrieving the values to print in console
 		 String select = "select * from emptable";
 		 
 		 ResultSet rs = stmt.executeQuery(select);
